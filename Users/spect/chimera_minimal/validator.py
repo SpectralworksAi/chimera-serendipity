@@ -5,6 +5,12 @@ class EvidenceClass:
     PROPOSAL = "PROPOSAL"
     SPECULATION = "SPECULATION"
 
+    # Provenance Sources
+    SOURCE_USER = "SOURCE_USER"
+    SOURCE_LLM = "SOURCE_LLM"
+    SOURCE_EXTERNAL = "SOURCE_EXTERNAL"
+    SOURCE_CONSENSUS = "SOURCE_CONSENSUS"
+
     @staticmethod
     def validate_promotion(current_class, target_class):
         # Rule: No silent upgrades. 
