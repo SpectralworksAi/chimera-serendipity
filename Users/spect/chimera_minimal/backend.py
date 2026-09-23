@@ -41,9 +41,30 @@ class LLMBackend:
 
     def _get_mock_response(self, prompt, system_prompt):
         """
-        Generates structural mocks to demonstrate the differences 
-        between RELAY, CHECK, and ADVERSARIAL modes.
+        Generates structural mocks to demonstrate the differences
+        between RELAY, CHECK, and ADVERSARIAL modes, and now Legal Kernel.
         """
+        if "CHIMERA Legal Kernel" in system_prompt:
+            # Check for the specific module trigger in the system prompt
+            if "CLAUSE_GEN" in system_prompt:
+                return (
+                    "THE FOLLOWING CLAUSE IS DRAFTED UNDER LK-01 CONSTRAINTS:\n"
+                    "The Creator hereby grants to the Distributor an irrevocable, worldwide, "
+                    "non-exclusive sync license to the asset 'Funny Walk' for a period of 10 years. "
+                    "Notwithstanding the foregoing, the Creator explicitly retains all moral rights, "
+                    "including the right of attribution and the right of integrity, which shall "
+                    "remain inalienable."
+                )
+            elif "PROV_TRACE" in system_prompt:
+                return "PROVENANCE TRACE: Root Asset 'Funny Walk' -> Created by SpectralworksAi (2026-01-01) -> Assigned to Hub (2026-03-01)."
+            elif "CONFLICT_DET" in system_prompt:
+                return "CONFLICT DETECTED: The proposed 10-year license conflicts with the existing perpetuity grant in PION_004."
+            elif "SKEPTIC_AUDIT" in system_prompt:
+                return "SKEPTIC AUDIT: The term 'irrevocable' may be contested under EU moral rights law."
+            
+            # Default mock for any Legal Kernel request
+            return "LK-01: [Legal Analysis completed based on constraints]"
+
         if "ADVERSARIAL" in system_prompt:
             return (
                 "Step 1: Analyzing 'Funny Walk' requirements... \n"
